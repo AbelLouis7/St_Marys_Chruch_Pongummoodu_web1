@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from  .forms import familyform, personform, bcc_unitform
+from  .forms import familyform, personform, bcc_unitform, userform
 from .models import bcc_unit, family, person
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -33,11 +33,27 @@ def loginPage(request):
              
 
     context = {'page': page}
-    return render(request, 'base/login.html',context)
+    return render(request, 'base/login_register.html',context)
 
 def logoutUser(request):
     logout(request)
     return redirect('home')
+
+def registerPage(request):
+    form  = userform()
+    if request.method == 'POST':
+        form = userform(request.POST)  
+        no = request.POST.get('phone')
+        number = person.objects.filter(phone=no)          
+        if number != None:
+            number = no
+            context = {'number':number}
+            return render(request,'base/otp.html',context)
+        else:
+            messages.error(request, 'An error occurred during registration')
+    context ={'form':form}
+    return render(request, 'base/login_register.html',context)
+
 
 
 def home(request):

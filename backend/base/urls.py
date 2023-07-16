@@ -10,6 +10,7 @@ urlpatterns = [
     path ('unitpage/<str:pk>',views.unitpage,name='unitpage'),
     path ('familypage/<str:pk>',views.familypage,name='familypage'),
     path('login/',views.loginPage, name='login'),
+    path('register/',views.registerPage, name='register'),
     path('logout/',views.logoutUser, name='logout'),
     path('searchperson/',views.searchperson,name='searchperson'),
     

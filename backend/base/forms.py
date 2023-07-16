@@ -1,5 +1,5 @@
 from django.forms import ModelForm 
-from .models import person, family, bcc_unit
+from .models import person, family, bcc_unit, user
 
 class familyform(ModelForm):
     class Meta:
@@ -16,3 +16,9 @@ class bcc_unitform(ModelForm):
     class Meta:
       model = bcc_unit
       fields = '__all__'
+
+class userform(ModelForm):
+   class Meta:
+      model = user
+      fields = '__all__'
+      

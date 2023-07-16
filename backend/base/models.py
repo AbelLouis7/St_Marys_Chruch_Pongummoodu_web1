@@ -1,5 +1,10 @@
 from django.db import models 
 
+
+class user(models.Model):
+    username = models.CharField(max_length=15)
+    phone = models.CharField(max_length=100)
+
 class bcc_unit(models.Model):
     unitnumber = models.IntegerField()
     leaders = models.CharField(max_length=100)
